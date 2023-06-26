@@ -1,7 +1,10 @@
+import Header from "@/components/Header";
 
 
 export default function Home() {
   return (
- <div className="text-blue-500">twitter clone</div>
+ <div >
+  <Header label="Home"  />
+ </div>
   )
 }
