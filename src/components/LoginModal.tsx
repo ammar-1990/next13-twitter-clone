@@ -19,20 +19,22 @@ const [password, setPassword] = useState('')
 
 const onSubmit = useCallback(async()=>{
   setIsLoading(true)
-  try {
-    await signIn('credentials',{email,password})
-    toast.success("Logged in")
-    loginModal.onClose()
-    
-  } catch (error) {
-    console.log(error)
-    toast.error('Something wnt wrong')
-  } finally{
-    setIsLoading(false)
-    setEmail('')
-    setPassword('')
-    
-  }
+ 
+    await signIn('credentials',{email,password,redirect:false}).then((callback)=>{
+      if(callback?.ok){
+        toast.success('Logged in')
+        loginModal.onClose()
+      }
+      if(callback?.error)
+      {
+        toast.error(callback.error)
+      }
+    }).finally(()=>{
+     setIsLoading(false)
+     setEmail('')
+     setPassword('')
+    })
+   
 
 
 },[email,password,loginModal])
