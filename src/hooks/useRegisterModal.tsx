@@ -6,11 +6,11 @@ type Store = {
   onClose: () => void
 }
 
-const useLoginModal = create<Store>()((set) => ({
+const useRegisterModal = create<Store>()((set) => ({
   isOpen: false,
   onOpen: () => set((state) => ({ isOpen: true })),
   onClose: () => set((state) => ({ isOpen: false })),
 }))
 
 
-export default useLoginModal
+export default useRegisterModal

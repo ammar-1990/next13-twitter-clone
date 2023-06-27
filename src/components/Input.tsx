@@ -15,6 +15,7 @@ const Input = ({value,onChange,placeholder,type}: Props) => {
     onChange={onChange}
     type={type}
     placeholder={placeholder}
+    required={true}
     />
   )
 }

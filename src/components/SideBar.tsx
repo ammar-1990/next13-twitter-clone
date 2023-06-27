@@ -6,13 +6,17 @@ import {BsFillPersonFill} from 'react-icons/bs'
 import {BiLogOut} from 'react-icons/bi'
 import {BsTwitter} from 'react-icons/bs'
 import {useRouter} from 'next/navigation'
+import {signOut} from 'next-auth/react'
 
 
 import React from 'react'
 import NavItem from './NavItem'
 import SidebarTweetButton from './SidebarTweetButton'
+import { safeUser } from '@/types'
 
-type Props = {}
+type Props = {
+    currentUser:safeUser | null
+}
 
 const navItems = [
     {
@@ -23,26 +27,26 @@ const navItems = [
     {
         label:'notifications',
         icon:BsBellFill,
-        href:'/notifications'
+        href:'/notifications',
+        auth:true
     },
     {
         label:'profile',
         icon:BsFillPersonFill,
-        href:'/profile/123'
+        href:'/profile/123',
+        auth:true
     },
-    {
-        label:'logout',
-        icon:BiLogOut,
-        onclick:()=>{}
-    },
+  
 ]
 
-const SideBar = (props: Props) => {
+const SideBar = ({currentUser}: Props) => {
   const router = useRouter()
   return (
     <div className='px-2 sm:px-12 sm:flex-1 w-fit py-4 flex flex-col gap-8'>
 <span className='cursor-pointer w-fit ml-auto lg:ml-0 px-2' onClick={()=>router.push('/')}><BsTwitter color='white' size={24} /></span>
-    {navItems.map((el,i)=><NavItem key={i} {...el} />)}
+    {navItems.map((el,i)=><NavItem key={i} {...el} currentUser={currentUser} />)}
+{  currentUser &&  <NavItem currentUser={currentUser} label='logout' icon={BiLogOut} onClick={()=>{signOut()}} />}
+
     <SidebarTweetButton />
     </div>
   )

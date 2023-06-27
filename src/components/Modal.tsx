@@ -8,6 +8,7 @@ type Props = {
     footer?:ReactElement,
     isOpen:boolean,
     onClose:()=>void,
+
     disabled?:boolean,
     onSubmit:()=>void,
     actionLabel:string
@@ -19,7 +20,7 @@ const Modal = ({header,body,footer,isOpen,onClose,disabled,onSubmit,actionLabel}
 if(!isOpen) return null
 
   return (
-    <div className="fixed inset-0 bg-neutral-800/70 flex items-center justify-center">
+    <div className="fixed inset-0 bg-neutral-800/80 flex items-center justify-center">
 <div className="w-full md:w-3/4 lg:w-1/2 h-full md:h-auto  bg-black md:rounded-md p-10 text-white space-y-10">
 
 
@@ -37,6 +38,7 @@ if(!isOpen) return null
         disabled={disabled}
         />
     </div>
+    <div>{footer}</div>
 
 </div>
 
