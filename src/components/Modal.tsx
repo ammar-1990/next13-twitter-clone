@@ -20,7 +20,7 @@ const Modal = ({header,body,footer,isOpen,onClose,disabled,onSubmit,actionLabel}
 if(!isOpen) return null
 
   return (
-    <div className="fixed inset-0 bg-neutral-800/80 flex items-center justify-center">
+    <div className="fixed inset-0 bg-neutral-800/80 flex items-center justify-center z-50">
 <div className="w-full md:w-3/4 lg:w-1/2 h-full md:h-auto  bg-black md:rounded-md p-10 text-white space-y-10">
 
 

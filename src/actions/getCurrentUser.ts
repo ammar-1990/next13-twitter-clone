@@ -20,7 +20,7 @@ export async function getSession() {
         ...currentUser,
         createdAt: currentUser.createdAt.toISOString(),
         updatedAt: currentUser.updatedAt.toISOString(),
-        emailVerified: currentUser.emailVerefied?.toISOString() || null,
+        emailVerefied: currentUser.emailVerefied?.toISOString() || null,
       };
     } catch (error) {
       console.log(error);

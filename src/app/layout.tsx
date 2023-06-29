@@ -6,6 +6,7 @@ import LoginModal from '@/components/LoginModal'
 import RegisterModal from '@/components/RegisterModal'
 import ToastProvider from '@/components/ToastProvider'
 import { getSession } from '@/actions/getCurrentUser'
+import { getAllUsers } from '@/actions/getAllUsers'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -21,6 +22,7 @@ export default async function   RootLayout({
 }) {
 
 const currentUser = await getSession()
+const users = await getAllUsers()
 
   return (
     <html lang="en">
@@ -28,7 +30,7 @@ const currentUser = await getSession()
      <LoginModal />
      <ToastProvider/>
      <RegisterModal />
-        <LayOut currentUser={currentUser}>
+        <LayOut users={users} currentUser={currentUser}>
         {children}
         </LayOut>
   
