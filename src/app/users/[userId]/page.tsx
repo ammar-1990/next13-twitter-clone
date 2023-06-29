@@ -7,6 +7,8 @@ import Hero from './Hero'
 import Button from "@/components/Button"
 import {MdOutlineCalendarMonth} from 'react-icons/md'
 import {format} from 'date-fns'
+import useEditModal from '@/hooks/useEditModal'
+import ClientButton from './ClientButton'
 
 type Props = {
     params:{userId:string}
@@ -21,11 +23,9 @@ const profileUser = await getUser(userId)
     <div>
         <Header showBack label={profileUser.theUser?.name as string} />
         <Hero currentUser={currentUser} userId={userId} coverImage={profileUser.theUser?.coverImage} profileImage={profileUser.theUser?.profileImage} />
-        <div className="flex justify-end px-3">
-    {currentUser?.id === userId ? <Button label="Edit" secondary /> : <Button label="Follow" secondary />}
-    </div>
+       <ClientButton currentUser={currentUser} userId={userId} />
     <div className='p-4'>
-        <p className='text-white'>{profileUser.theUser?.name}</p>
+        <p className='text-white capitalize'>{profileUser.theUser?.name}</p>
         <p className='text-neutral-500 text-sm'>@{profileUser.theUser?.username}</p>
 <div className='flex items-center gap-3 text-neutral-500 mt-8'>
 <MdOutlineCalendarMonth size={24}  />

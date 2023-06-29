@@ -7,6 +7,7 @@ import RegisterModal from '@/components/RegisterModal'
 import ToastProvider from '@/components/ToastProvider'
 import { getSession } from '@/actions/getCurrentUser'
 import { getAllUsers } from '@/actions/getAllUsers'
+import EditModal from '@/components/EditModal'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -30,6 +31,7 @@ const users = await getAllUsers()
      <LoginModal />
      <ToastProvider/>
      <RegisterModal />
+     <EditModal currentUser = {currentUser} />
         <LayOut users={users} currentUser={currentUser}>
         {children}
         </LayOut>
