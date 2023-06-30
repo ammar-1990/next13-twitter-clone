@@ -15,10 +15,10 @@ const UserComponent = ({name,username,img ,id}: Props) => {
   return (
     <div className="flex items-center gap-3">
 <div className="relative w-12 h-12 rounded-full overflow-hidden cursor-pointer" onClick={()=>router.push(`/users/${id}`)}>
-    <Image src={img || '/images/placeholder.png'} fill alt="profile image" />
+    <Image src={img || '/images/placeholder.png'} fill alt="profile image" className="object-contain"/>
 </div>
 <div>
-    <p className="font-semibold">{name}</p>
+    <p className="font-semibold text-white">{name}</p>
     <p className="text-neutral-500 text-sm">@{username}</p>
 </div>
     </div>

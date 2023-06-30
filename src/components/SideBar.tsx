@@ -18,28 +18,29 @@ type Props = {
     currentUser:safeUser | null
 }
 
-const navItems = [
-    {
-        label:'home',
-        icon:AiFillHome,
-        href:'/'
-    },
-    {
-        label:'notifications',
-        icon:BsBellFill,
-        href:'/notifications',
-        auth:true
-    },
-    {
-        label:'profile',
-        icon:BsFillPersonFill,
-        href:'/profile/123',
-        auth:true
-    },
-  
-]
+
 
 const SideBar = ({currentUser}: Props) => {
+    const navItems = [
+        {
+            label:'home',
+            icon:AiFillHome,
+            href:'/'
+        },
+        {
+            label:'notifications',
+            icon:BsBellFill,
+            href:'/notifications',
+            auth:true
+        },
+        {
+            label:'profile',
+            icon:BsFillPersonFill,
+            href:`/users/${currentUser?.id}`,
+            auth:true
+        },
+      
+    ]
   const router = useRouter()
   return (
     <div className='px-2 sm:px-12 sm:flex-1 w-fit py-4 flex flex-col gap-10'>
