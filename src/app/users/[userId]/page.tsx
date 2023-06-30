@@ -9,6 +9,7 @@ import {MdOutlineCalendarMonth} from 'react-icons/md'
 import {format} from 'date-fns'
 import useEditModal from '@/hooks/useEditModal'
 import ClientButton from './ClientButton'
+import PostFeed from '@/components/PostFeed'
 
 type Props = {
     params:{userId:string}
@@ -37,6 +38,7 @@ const profileUser = await getUser(userId)
 </div>
 
     </div>
+    <PostFeed userId={userId} />
 
     </div>
   )

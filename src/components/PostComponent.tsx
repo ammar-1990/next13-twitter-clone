@@ -2,9 +2,10 @@
 import { User, Comment } from "@prisma/client";
 import Image from "next/image";
 import {formatDistanceToNowStrict} from 'date-fns'
-import React, { useMemo } from "react";
+import React, { useCallback, useMemo } from "react";
 import {BiMessageSquare} from 'react-icons/bi'
 import {AiOutlineHeart} from 'react-icons/ai'
+import { useRouter } from "next/navigation";
 
 type Props = {
   body: string | null;
@@ -12,16 +13,28 @@ type Props = {
   comments: Comment[] | [];
   likedIds: string[] | [];
   createdAt: Date;
+  id:string
 };
 
-const PostComponent = ({ body, user, comments, createdAt }: Props) => {
+const PostComponent = ({id, body, user, comments, createdAt }: Props) => {
 
 const myDate = useMemo(()=>{
 return formatDistanceToNowStrict(createdAt)
 },[createdAt])
+const router = useRouter()
+
+const toUser = useCallback((e:React.MouseEvent<HTMLParagraphElement>)=>{
+    e.stopPropagation()
+    router.push(`/users/${user?.id}`)
+},[router])
+
+const toPost = useCallback((e:React.MouseEvent<HTMLParagraphElement>)=>{
+    e.stopPropagation()
+    router.push(`/posts/${id}`)
+},[])
 
   return (
-    <div className="p-4 flex items-center gap-3 mb-6 hover:bg-neutral-900 cursor-pointer">
+    <div className="p-4 flex items-center gap-3 mb-6 hover:bg-neutral-900 cursor-pointer" onClick={toPost}>
       <Image
         src={(user?.profileImage as string) || "/images/placeholder.png"}
         width={100}
@@ -31,8 +44,8 @@ return formatDistanceToNowStrict(createdAt)
       />
       <div className="space-y-5">
 <div className="flex items-center gap-4">
-    <p className="text-white">{user?.name}</p>
-    <p className="text-neutral-500 text-sm hidden md:block">@{user?.username}</p>
+    <p className="text-white" onClick={toUser}>{user?.name}</p>
+    <p className="text-neutral-500 text-sm hidden md:block hover:underline" onClick={toUser}>@{user?.username}</p>
     <p className="text-neutral-500 text-sm ">{myDate}</p>
 </div>
 <p className="text-white text-xs">{body}</p>
