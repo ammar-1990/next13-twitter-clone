@@ -10,12 +10,12 @@ export async function POST(request:Request,{params}:{params:PARAMS}){
     const userId = params.userId
     const currentUser = await getSession()
 
-    if(userId !== currentUser?.id)  throw new Error('Not authorized')
+    if(userId !== currentUser?.id)   return new Response('Not authorized',{status:400})
 
     const {name,username,bio,coverImage,profileImage} = await request.json()
     console.log(name,username,bio)
 
-    if(!name || !username) throw new Error('Please enter username and name')
+    if(!name || !username)   return new Response('Please enter name and username',{status:400})
 
     try {
         const user = await prisma.user.update({
@@ -28,13 +28,13 @@ export async function POST(request:Request,{params}:{params:PARAMS}){
         })
 
         return NextResponse.json(user)
-    } catch (error) {
+    } catch (error:any) {
         console.log(error)
-        return NextResponse.error()
+       return new Response('something went wrong',{status:500})
     }
 
 
 
-    return NextResponse.json(userId)
+
 
 }

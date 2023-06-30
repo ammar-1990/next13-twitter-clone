@@ -7,6 +7,7 @@ import { useCallback, useState } from "react"
 import axios from "axios"
 import { toast } from "react-hot-toast"
 import { useRouter } from "next/navigation"
+import ImageUpload from "./ImageUpload"
 
 
 type Props = {
@@ -32,9 +33,9 @@ try {
     editModal.onClose()
     router.refresh()
 
-} catch (error) {
+} catch (error:any) {
     console.log(error)
- toast.error('something went wrong')   
+ toast.error(error.response.data)   
 } finally{
     setIsLoading(false)
 }
@@ -43,7 +44,18 @@ try {
 
 
 const bodyContent = (<div className="space-y-4">
-
+<ImageUpload 
+value={profileImage}
+onChange={(image:string)=>setProfileImage(image)}
+disabled={isLoading}
+label="Upload Profile Image"
+/>
+<ImageUpload 
+value={coverImage}
+onChange={(image:string)=>setCoverImage(image)}
+disabled={isLoading}
+label="Upload Cover Image"
+/>
     <Input type="string" placeholder="Name" value={name as string } onChange={(e)=>setName(e.target.value)}  />
     <Input type="string" placeholder="Username" value={username as string} onChange={(e)=>setUsername(e.target.value) }  />
     <Input type="string" placeholder="Bio" value={bio as string} onChange={(e)=>setBio(e.target.value)}  />

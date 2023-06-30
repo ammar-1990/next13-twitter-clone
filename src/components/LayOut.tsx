@@ -16,7 +16,7 @@ const LayOut = ({children,currentUser,users}: Props) => {
     <div className='flex h-screen'>
         <SideBar currentUser = {currentUser} />
         <div className='flex-[3] border'>{children}</div>
-        <div className='flex-1 px-5 py-4'>
+        <div className='flex-1 px-5 py-4 hidden sm:block'>
            <ToFollow users={users} />
         </div>
 

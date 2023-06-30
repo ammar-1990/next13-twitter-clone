@@ -22,12 +22,14 @@ const Hero =async ({coverImage,profileImage,currentUser,userId}: Props) => {
 fill
 src={coverImage}
 alt="Cover Image"
+className="object-contain"
 />}
 <div className="absolute -bottom-16 left-10 w-32 h-32 rounded-full border-4 border-black overflow-hidden cursor-pointer">
     <Image
     src={profileImage || '/images/placeholder.png'}
     fill
     alt="Profile Image"
+    className="object-contain"
     />
 </div>
 
