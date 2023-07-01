@@ -2,6 +2,7 @@
 
 import Button from '@/components/Button'
 import useEditModal from '@/hooks/useEditModal'
+import useFollow from '@/hooks/useFollow'
 import { safeUser } from '@/types'
 import React from 'react'
 
@@ -13,9 +14,11 @@ type Props = {
 
 const ClientButton = ({currentUser,userId}: Props) => {
     const editModal = useEditModal()
+
+    const {isFollowing,toggleFollow} = useFollow({currentUser,userId})
   return (
     <div className="flex justify-end px-3">
-    {currentUser?.id === userId ? <Button label="Edit" secondary onClick={editModal.onOpen} /> : <Button label="Follow" secondary />}
+    {currentUser?.id === userId ? <Button label="Edit" secondary onClick={editModal.onOpen} /> : <Button label={isFollowing?'Unfollow' : 'Follow'} secondary onClick={toggleFollow} />}
     </div>
   )
 }

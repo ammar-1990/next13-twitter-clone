@@ -34,7 +34,7 @@ const toPost = useCallback((e:React.MouseEvent<HTMLParagraphElement>)=>{
 },[])
 
   return (
-    <div className="p-4 flex items-center gap-3 mb-6 hover:bg-neutral-900 cursor-pointer" onClick={toPost}>
+    <div className="p-4 flex  gap-3 mb-6 hover:bg-neutral-900 cursor-pointer" onClick={toPost}>
       <Image
         src={(user?.profileImage as string) || "/images/placeholder.png"}
         width={100}

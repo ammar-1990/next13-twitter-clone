@@ -25,7 +25,7 @@ const profileUser = await getUser(userId)
         <Header showBack label={profileUser.theUser?.name as string} />
         <Hero currentUser={currentUser} userId={userId} coverImage={profileUser.theUser?.coverImage} profileImage={profileUser.theUser?.profileImage} />
        <ClientButton currentUser={currentUser} userId={userId} />
-    <div className='p-4'>
+    <div className='p-4 mb-6'>
         <p className='text-white capitalize'>{profileUser.theUser?.name}</p>
         <p className='text-neutral-500 text-sm'>@{profileUser.theUser?.username}</p>
 <div className='flex items-center gap-3 text-neutral-500 mt-8'>

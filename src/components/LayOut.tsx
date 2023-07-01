@@ -15,7 +15,7 @@ const LayOut = ({children,currentUser,users}: Props) => {
   return (
     <div className='flex h-screen '>
         <SideBar currentUser = {currentUser} />
-        <div className='flex-[3]  h-full overflow-y-auto'>{children}</div>
+        <div className='flex-[3]  h-full overflow-y-auto myScroll'>{children}</div>
         <div className='flex-1 px-5 py-4 hidden sm:block'>
            <ToFollow users={users} />
         </div>
