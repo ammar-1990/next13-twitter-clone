@@ -11,9 +11,12 @@ import { useRouter } from "next/navigation";
 
 type Props = {
   currentUser: safeUser | null;
+  isComment?:boolean
+  placeholder:string,
+  postId?:string
 };
 
-const PostForm = ({ currentUser }: Props) => {
+const PostForm = ({ currentUser,isComment,placeholder ,postId}: Props) => {
   const registerModl = useRegisterModal();
   const loginModal = useLoginModal();
   const [body, setBody] = useState("");
@@ -61,7 +64,7 @@ try {
             <input
               value={body}
               onChange={(e) => setBody(e.target.value)}
-              placeholder="What's happening?"
+              placeholder={placeholder}
               className="flex-1 outline-none bg-transparent caret-slate-500 text-white px-2"
             />
             </div>

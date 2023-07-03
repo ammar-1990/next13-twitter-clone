@@ -7,11 +7,11 @@ import PostFeed from "@/components/PostFeed";
 export default async function Home() {
 const currentUser = await getSession()
 
-console.log(currentUser)
+
   return (
  <div >
   <Header label="Home"  />
-  <PostForm currentUser={currentUser} />
+  <PostForm currentUser={currentUser} placeholder="What is happening" />
   <PostFeed />
  </div>
   )
