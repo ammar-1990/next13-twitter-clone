@@ -1,5 +1,6 @@
 import { getSession } from "@/actions/getCurrentUser";
 import { getPost } from "@/actions/getPost";
+import CommentComponent from "@/components/CommentComponent";
 import Header from "@/components/Header";
 import PostComponent from "@/components/PostComponent";
 import PostForm from "@/components/PostForm";
@@ -18,6 +19,7 @@ const page = async ({ params }: Props) => {
     <div>
       <Header showBack label="Tweet" />
       <PostComponent
+      currentUser={currentUser}
         body={post?.body as string}
         user={post?.user as User}
         id={post?.id as string}
@@ -25,7 +27,11 @@ const page = async ({ params }: Props) => {
         comments={post?.comments as Comment[]}
         likedIds={post?.likedIds as string[]}
       />
-      <PostForm currentUser={currentUser} isComment placeholder="Tweet your replay" postId={post?.id}/>
+      <PostForm currentUser={currentUser} isComment={true} placeholder="Tweet your replay" postId={post?.id}/>
+      <div className="mt-3">
+        {post?.comments.map((comment)=><CommentComponent key={comment.id} comment={comment} />)}
+
+      </div>
     </div>
   );
 };

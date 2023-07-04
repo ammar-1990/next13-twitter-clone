@@ -10,7 +10,7 @@ if(!currentUser) return new Response('Login to make a post',{status:401})
 try {
     const {body} = await request.json()
 
-    if(!body) return new Response('enter a post please',{status:401})
+    if(!body) return new Response('write a post please',{status:401})
     console.log(body)
 
     const post = await prisma.post.create({

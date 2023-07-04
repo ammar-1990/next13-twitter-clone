@@ -25,9 +25,10 @@ const router = useRouter()
 const handleSubmit = useCallback(async(e:React.FormEvent<HTMLFormElement>)=>{
     e.preventDefault()
 setIsLoading(true)
+const url = isComment ? `/api/comments/${postId}` :'/api/posts'
 try {
-    await axios.post('/api/posts',{body})
-    toast.success('Post added')
+    await axios.post(url,{body})
+  isComment? toast.success('Comment added') :  toast.success('Post added')
    
     setBody('')
     router.refresh()
@@ -38,7 +39,7 @@ try {
 } finally{
     setIsLoading(false)
 }
-},[body])
+},[body,isComment,postId])
 
   return (
     <div className="my-4">
