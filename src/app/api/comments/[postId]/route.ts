@@ -24,6 +24,23 @@ try {
             
         }
     })
+
+    const post = await prisma.post.findUnique({where:{id:postId}})
+
+    await prisma.notification.create({
+        data:{
+           userId:post?.userId as string,
+           body:`${currentUser.name } replied to  your tweet! `
+        }
+    })
+    
+    await prisma.user.update({
+        where:{id:post?.userId},
+        data:{hasNotification:true}
+    })
+
+
+
     return NextResponse.json({message:'Comment created'},{status:201})
 
 

@@ -17,11 +17,26 @@ try {
 
    newList.push(currentUser?.id)
    console.log(currentUser.id)
+  
 
    const updatedPost = await prisma.post.update({
     where:{id:likeId},
     data:{likedIds:newList}
    })
+
+
+ await prisma.notification.create({
+    data:{
+       userId:post?.userId as string,
+       body:`${currentUser.name } liked your tweet! `
+    }
+})
+
+await prisma.user.update({
+    where:{id:post?.userId},
+    data:{hasNotification:true}
+})
+
 
    return NextResponse.json(updatedPost)
 } catch (error) {

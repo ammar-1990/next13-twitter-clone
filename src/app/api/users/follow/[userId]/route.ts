@@ -23,6 +23,19 @@ const updatedUser=await prisma.user.update({
     where:{id:currentUser.id},
     data:{followingIds:[...followList]}
 })
+
+
+await prisma.notification.create({
+    data:{
+       userId:userId ,
+       body:`${currentUser.name } followed you `
+    }
+})
+
+await prisma.user.update({
+    where:{id:userId},
+    data:{hasNotification:true}
+})
 return NextResponse.json(updatedUser)
 } catch (error) {
     console.log(error)
