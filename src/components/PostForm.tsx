@@ -42,7 +42,7 @@ try {
 },[body,isComment,postId])
 
   return (
-    <div className="my-4">
+    <div className=" border-b border-neutral-800 p-3">
       {!currentUser ? (
         <div className="flex flex-col gap-4 items-center">
           <p className="text-white font-bold text-2xl">Welcome to Twitter!</p>

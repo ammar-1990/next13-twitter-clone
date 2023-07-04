@@ -40,7 +40,7 @@ const toPost = useCallback((e:React.MouseEvent<HTMLParagraphElement>)=>{
 },[])
 
   return (
-    <div className="p-4 flex  gap-3 mb-6 hover:bg-neutral-900 cursor-pointer" onClick={toPost}>
+    <div className="p-4 flex  gap-3  hover:bg-neutral-900 cursor-pointer border-b  border-neutral-800" onClick={toPost}>
       <Image
         src={(user?.profileImage as string) || "/images/placeholder.png"}
         width={100}
@@ -50,8 +50,8 @@ const toPost = useCallback((e:React.MouseEvent<HTMLParagraphElement>)=>{
       />
       <div className="space-y-5">
 <div className="flex items-center gap-4">
-    <p className="text-white" onClick={toUser}>{user?.name}</p>
-    <p className="text-neutral-500 text-sm hidden md:block hover:underline" onClick={toUser}>@{user?.username}</p>
+    <p className="text-white capitalize" onClick={toUser}>{user?.name}</p>
+    <p className="text-neutral-500 text-sm hidden md:block hover:underline capitalize" onClick={toUser}>@{user?.username}</p>
     <p className="text-neutral-500 text-sm ">{myDate}</p>
 </div>
 <p className="text-white text-xs">{body}</p>

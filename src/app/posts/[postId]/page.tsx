@@ -28,7 +28,7 @@ const page = async ({ params }: Props) => {
         likedIds={post?.likedIds as string[]}
       />
       <PostForm currentUser={currentUser} isComment={true} placeholder="Tweet your replay" postId={post?.id}/>
-      <div className="mt-3">
+      <div className="">
         {post?.comments.map((comment)=><CommentComponent key={comment.id} comment={comment} />)}
 
       </div>

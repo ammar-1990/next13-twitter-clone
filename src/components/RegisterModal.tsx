@@ -26,9 +26,9 @@ const onSubmit = useCallback(async()=>{
     toast.success('Account is created')
     signIn('credentials',{email,password})
     registerModal.onClose()
-  } catch (error) {
+  } catch (error:any) {
     console.log(error)
-    toast.error('Something went wrong')
+    toast.error(error.response.data)
   } finally{
     setIsLoading(false)
     setName('')
@@ -63,7 +63,7 @@ const footerContent = (
    onClose={registerModal.onClose}
 
    body={bodyContent}
-   disabled={isLoading || !name || !username || !email || !password}
+   disabled={isLoading }
    footer={footerContent}
    />
   )
