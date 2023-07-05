@@ -49,7 +49,7 @@ const SideBar = ({currentUser}: Props) => {
     {navItems.map((el,i)=><NavItem key={i} {...el} currentUser={currentUser} />)}
 {  currentUser &&  <NavItem currentUser={currentUser} label='logout' icon={BiLogOut} onClick={()=>{signOut()}} />}
 
-    <SidebarTweetButton />
+    <SidebarTweetButton currentUser={currentUser} />
     </div>
   )
 }
