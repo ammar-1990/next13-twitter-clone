@@ -36,6 +36,7 @@ const profileUser = await getUser(userId)
     <p className='text-white'>{profileUser.followers}  <span className='text-neutral-500'>Followers</span></p>
     <p className='text-white'>{profileUser?.theUser?.followingIds.length} <span className='text-neutral-500'>Following</span></p>
 </div>
+{profileUser.theUser?.bio&&<p className='mt-5 mb-3 text-sm text-neutral-500'>BIO <br/>{profileUser.theUser?.bio}</p>}
 
     </div>
     <PostFeed userId={userId} />
